@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Glow and Grace — E-commerce</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="Glow and Grace" class="logo" />
+        <div class="brand-text">
+          <div class="brand-title">Glow &amp; Grace</div>
+          <div class="brand-sub">Beleza com Elegância</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Menu principal">
+        <button class="nav-chip" data-filter="todos">Todos</button>
+        <button class="nav-chip" data-filter="olhos">Olhos</button>
+        <button class="nav-chip" data-filter="pele">Pele</button>
+        <button class="nav-chip" data-filter="lábios">Lábios</button>
+      </nav>
+
+      <div class="actions">
+        <input id="search" class="search" type="search" placeholder="Buscar produto…" aria-label="Buscar produto">
+        <button id="cartOpen" class="btn-outline" aria-haspopup="dialog" aria-controls="cartDrawer">🛍️ <span id="cartBadge">(0)</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-text">
+        <div class="kicker">Nova coleção</div>
+        <h1>Brilho sutil, graça absoluta.</h1>
+        <p>Maquiagem curada com acabamento natural — minimalista e sofisticado.</p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#shop">Comprar</a>
+          <a class="btn-ghost" href="#sobre">Sobre</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="images/hero.jpg" alt="Paleta de maquiagem" />
+      </div>
+    </section>
+
+    <!-- Produtos / Carrossel -->
+    <section id="shop" class="container section-shop" aria-labelledby="shopTitle">
+      <h2 id="shopTitle" class="section-title">Produtos</h2>
+
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev" aria-label="Anterior">‹</button>
+        <div class="carousel" id="productCarousel" tabindex="0" aria-live="polite"></div>
+        <button class="carousel-btn next" aria-label="Próximo">›</button>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="container">
+      <div class="card about">
+        <h3>Sobre a Glow and Grace</h3>
+        <p>
+          Minimalismo e elegância em cada detalhe. Fórmulas pensadas para realçar, embalagens responsáveis
+          e uma experiência de compra cuidadosa.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="container contact-section">
+      <div class="card contact-card">
+        <h3>Fale com a gente</h3>
+        <form id="contactForm" novalidate>
+          <div class="form-grid">
+            <label class="field">
+              <span>Nome</span>
+              <input name="nome" type="text" required placeholder="Seu nome">
+            </label>
+            <label class="field">
+              <span>E-mail</span>
+              <input name="email" type="email" required placeholder="seu@email.com">
+            </label>
+            <label class="field span-2">
+              <span>Assunto</span>
+              <input name="assunto" type="text" placeholder="Assunto">
+            </label>
+            <label class="field span-2">
+              <span>Mensagem</span>
+              <textarea name="mensagem" rows="5" required placeholder="Como podemos ajudar?"></textarea>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn-outline">Limpar</button>
+            <button type="submit" class="btn-primary">Enviar mensagem</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Carrinho Drawer -->
+  <div id="cartBackdrop" class="backdrop hidden"></div>
+  <aside id="cartDrawer" class="cart-drawer hidden" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <header class="cart-header">
+      <h3 id="cartTitle">Seu carrinho</h3>
+      <div class="cart-actions">
+        <button id="clearCart" class="btn-ghost small">Limpar</button>
+        <button id="cartClose" aria-label="Fechar carrinho" class="btn-close">✕</button>
+      </div>
+    </header>
+
+    <div class="cart-content" id="cartContent" tabindex="0"></div>
+
+    <form id="checkoutForm" class="cart-checkout" novalidate>
+      <h4>Endereço de entrega</h4>
+      <div class="field"><input name="nome" placeholder="Nome completo" required></div>
+      <div class="field"><input name="telefone" placeholder="Telefone (opcional)"></div>
+      <div class="field"><input name="cep" placeholder="CEP" required></div>
+      <div class="field"><input name="endereco" placeholder="Rua, número, complemento" required></div>
+      <div class="field"><input name="cidade" placeholder="Cidade" required></div>
+      <div class="field"><input name="uf" placeholder="UF" required maxlength="2"></div>
+
+      <h4>Pagamento</h4>
+      <div class="payment-options">
+        <label><input type="radio" name="pagamento" value="pix" checked> PIX</label>
+        <label><input type="radio" name="pagamento" value="cartao"> Cartão de crédito</label>
+        <label><input type="radio" name="pagamento" value="boleto"> Boleto</label>
+      </div>
+
+      <div class="checkout-summary">
+        <div>Subtotal: <span id="cartSubtotal">R$ 0,00</span></div>
+        <div>Frete: <span id="cartFrete">R$ 0,00</span></div>
+        <div class="total">Total: <strong id="cartTotal">R$ 0,00</strong></div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="backToShop" class="btn-outline">Voltar</button>
+        <button type="submit" class="btn-primary">Confirmar pedido</button>
+      </div>
+    </form>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Glow and Grace</div>
+      <div class="muted">Minimalista • Elegante • Consciente</div>
+    </div>
+  </footer>
+</body>
+</html>
