@@ -11,7 +11,7 @@ const PRODUCTS = [
   { id:'l2', nome:'Batom Velvet Matte', categoria:'lábios', preco:59.9, img:'images/batom2.jpg', desc:'Acabamento aveludado sem ressecar.' }
 ];
 
-// Utilitários
+// Utilitáriosa
 const R$ = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const qs = s => document.querySelector(s);
 const qsa = s => Array.from(document.querySelectorAll(s));
@@ -259,3 +259,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 // Inicial render sempre que filtros mudam
 searchInput.addEventListener('input', applyFilters);
+
